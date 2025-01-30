@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Comics</title>
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+</head>
+<body>
+        <!-- jQuery (requerido por Slick Carousel) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Slick Carousel JS -->
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Menú superior -->
+    <header>
+        <div class="header-logo">
+            <a href="/">
+                <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
+            </a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/marvel">Marvel</a></li>
+                <li><a href="/dc">DC</a></li>
+                <li><a href="/indie">Indie</a></li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li><a href="/el-corps">El Corps</a></li>
+            </ul>
+            <!-- Barra de búsqueda -->
+            <div class="search-container">
+                <div class="search-icon" onclick="toggleSearch()">
+                    <img src="/images/lupa.png" alt="Buscar">
+                </div>
+                <form action="/buscar" method="GET" class="search-form">
+                    <input type="text" name="q" placeholder="Buscar por título o volumen..." required>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <% if (isHome) { %>
+            <!-- Sección de Destacados (Slider) -->
+            <section>
+                <h2>Destacados</h2>
+                <div class="comics-slider">
+                    <% if (destacados.length > 0) { %>
+                        <% destacados.slice(0, 12).forEach(comic => { %>
+                            <div class="comic-slide">
+                                <div class="comic-card">
+                                    <a href="/comic/<%= comic._id %>">
+                                        <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                                        <h3><%= comic.title %></h3>
+                                        <p><%= comic.volume %></p>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No hay cómics destacados.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- Sección de Marvel (Slider) -->
+            <section>
+                <h2>Marvel</h2>
+                <div class="comics-slider">
+                    <% if (marvel.length > 0) { %>
+                        <% marvel.slice(0, 12).forEach(comic => { %>
+                            <div class="comic-slide">
+                                <div class="comic-card">
+                                    <a href="/comic/<%= comic._id %>">
+                                        <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                                        <h3><%= comic.title %></h3>
+                                        <p><%= comic.volume %></p>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No hay cómics de Marvel.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- Sección de DC (Slider) -->
+            <section>
+                <h2>DC</h2>
+                <div class="comics-slider">
+                    <% if (dc.length > 0) { %>
+                        <% dc.slice(0, 12).forEach(comic => { %>
+                            <div class="comic-slide">
+                                <div class="comic-card">
+                                    <a href="/comic/<%= comic._id %>">
+                                        <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                                        <h3><%= comic.title %></h3>
+                                        <p><%= comic.volume %></p>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No hay cómics de DC.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- Sección de Indie (Slider) -->
+            <section>
+                <h2>Indie</h2>
+                <div class="comics-slider">
+                    <% if (indie.length > 0) { %>
+                        <% indie.slice(0, 12).forEach(comic => { %>
+                            <div class="comic-slide">
+                                <div class="comic-card">
+                                    <a href="/comic/<%= comic._id %>">
+                                        <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                                        <h3><%= comic.title %></h3>
+                                        <p><%= comic.volume %></p>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No hay cómics independientes.</p>
+                    <% } %>
+                </div>
+            </section>
+        <% } else { %>
+            <!-- Página de categoría o resultados de búsqueda (Diseño actual) -->
+            <section>
+                <h2><%= category || "Resultados de búsqueda" %></h2>
+                <div class="comics-grid">
+                    <% if (comics.length > 0) { %>
+                        <% comics.forEach(comic => { %>
+                            <div class="comic-card">
+                                <a href="/comic/<%= comic._id %>">
+                                    <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                                    <h3><%= comic.title %></h3>
+                                    <p><%= comic.volume %></p>
+                                </a>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No se encontraron cómics.</p>
+                    <% } %>
+                </div>
+            </section>
+        <% } %>
+    </main>
+
+    <footer>
+        <p>Inifinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados a sus respectivos creadores y propietarios.</p>
+        <p>Creado por Mastercraft Web Developing</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function toggleSearch() {
+            const searchForm = document.querySelector('.search-form');
+            searchForm.classList.toggle('active');
+        }
+    
+        // Inicializar Slick Carousel
+        $(document).ready(function(){
+            $('.comics-slider').slick({
+                slidesToShow: 5, // Muestra 5 cómics a la vez
+                slidesToScroll: 1, // Desplaza 1 cómic a la vez
+                infinite: true, // Permite desplazamiento infinito
+                arrows: true, // Muestra flechas de navegación
+                dots: false, // Oculta los puntos de navegación
+                prevArrow: '<button type="button" class="slick-prev">←</button>', // Flecha personalizada izquierda
+                nextArrow: '<button type="button" class="slick-next">→</button>', // Flecha personalizada derecha
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+    
+
+</body>
+</html>
