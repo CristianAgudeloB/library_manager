@@ -3,7 +3,33 @@ const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 
+// Configuración de CORS (según el formato proporcionado)
+const whitelist = ['*'];
+
+app.use((req, res, next) => {
+    const origin = req.get('referer');
+    const isWhitelisted = whitelist.find((w) => origin && origin.includes(w));
+    if (isWhitelisted) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization');
+        res.setHeader('Access-Control-Allow-Credentials', true);
+    }
+    // Pass to next layer of middleware
+    if (req.method === 'OPTIONS') res.sendStatus(200);
+    else next();
+});
+
+// Middleware para establecer contexto
+const setContext = (req, res, next) => {
+    if (!req.context) req.context = {};
+    next();
+};
+app.use(setContext);
+
+// Rutas
 const indexRouter = require('./routes/index');
+app.use('/', indexRouter);
 
 const app = express();
 
