@@ -1,271 +1,402 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lector: <%= comic.title %></title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/styles.css" />
     <style>
-        /* Estilos específicos para el lector web */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            font-family: 'Poppins', sans-serif; /* Fuente de la página */
-        }
+      /* Estilos específicos para el lector web */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        font-family: "Poppins", sans-serif; /* Fuente de la página */
+      }
 
-        /* Menú superior */
+      /* Menú superior */
+      .reader-header {
+        background-color: #333;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10; /* Asegura que el menú esté por encima de la imagen */
+        transition: top 0.3s ease; /* Transición suave para ocultar/mostrar el menú */
+      }
+
+      .reader-header.hidden {
+        top: -70px; /* Oculta el menú superior */
+      }
+
+      .reader-header .header-logo img {
+        height: 50px;
+        width: auto;
+      }
+
+      .reader-header .comic-title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 20px;
+      }
+
+      .reader-header .zoom-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .reader-header .zoom-controls select,
+      .reader-header .zoom-controls input {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #1e1e1e;
+        background-color: #1e1e1e; /* Color de fondo */
+        color: #fff; /* Color del texto */
+        font-family: "Poppins", sans-serif; /* Misma fuente que la página */
+      }
+
+      .reader-header .zoom-controls input {
+        width: 60px;
+        text-align: right;
+      }
+
+      @media (max-width: 768px) {
         .reader-header {
-            background-color: #333;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10; /* Asegura que el menú esté por encima de la imagen */
-            transition: top 0.3s ease; /* Transición suave para ocultar/mostrar el menú */
-        }
-
-        .reader-header.hidden {
-            top: -70px; /* Oculta el menú superior */
+          padding: 5px 10px; /* Reduce el padding */
         }
 
         .reader-header .header-logo img {
-            height: 50px;
-            width: auto;
+          height: 40px; /* Reduce el tamaño del logo */
         }
 
         .reader-header .comic-title {
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0 20px;
-        }
-
-        .reader-header .zoom-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+          font-size: 18px; /* Reduce el tamaño del título */
+          margin: 0 10px; /* Reduce el margen */
         }
 
         .reader-header .zoom-controls select,
         .reader-header .zoom-controls input {
-            padding: 5px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #1e1e1e;
-            background-color: #1e1e1e; /* Color de fondo */
-            color: #fff; /* Color del texto */
-            font-family: 'Poppins', sans-serif; /* Misma fuente que la página */
+          font-size: 14px; /* Reduce el tamaño de la fuente */
+          padding: 3px; /* Reduce el padding */
         }
 
         .reader-header .zoom-controls input {
-            width: 60px;
-            text-align: right;
+          width: 50px; /* Reduce el ancho del input */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .reader-header .zoom-controls {
+          flex-direction: column; /* Cambia a disposición vertical */
+          gap: 5px; /* Reduce el espacio entre elementos */
         }
 
-        /* Contenedor principal del lector */
+        .reader-header .zoom-controls select,
+        .reader-header .zoom-controls input {
+          width: 100%; /* Ocupa todo el ancho disponible */
+        }
+      }
+
+      /* Contenedor principal del lector */
+      .comic-reader {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Alinea la imagen en la parte superior */
+        min-height: calc(
+          100vh - 70px
+        ); /* Altura mínima menos el menú superior */
+        padding-top: 20px; /* Espacio para evitar que la imagen se meta en el menú */
+        position: relative;
+      }
+
+      @media (max-width: 768px) {
         .comic-reader {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Alinea la imagen en la parte superior */
-            min-height: calc(100vh - 70px); /* Altura mínima menos el menú superior */
-            padding-top: 20px; /* Espacio para evitar que la imagen se meta en el menú */
-            position: relative;
+          padding-top: 10px; /* Reduce el padding superior */
+          min-height: calc(100vh - 60px); /* Ajusta la altura mínima */
+        }
+      }
+      @media (max-width: 768px) {
+        body {
+          overflow-x: hidden; /* Evita el desplazamiento horizontal */
         }
 
-        /* Imagen actual */
+        .comic-reader {
+          overflow-y: auto; /* Permite el desplazamiento vertical */
+        }
+      }
+      /* Imagen actual */
+      .comic-reader .current-page {
+        max-width: 90%;
+        max-height: none; /* Permite que la imagen crezca hacia abajo */
+        object-fit: contain;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease; /* Transición suave para el zoom */
+        transform-origin: top center; /* El zoom se expande hacia abajo */
+        padding-bottom: 50px;
+      }
+
+      @media (max-width: 768px) {
         .comic-reader .current-page {
-            max-width: 90%;
-            max-height: none; /* Permite que la imagen crezca hacia abajo */
-            object-fit: contain;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease; /* Transición suave para el zoom */
-            transform-origin: top center; /* El zoom se expande hacia abajo */
-            padding-bottom: 50px;
+          max-width: 100%; /* Ocupa todo el ancho disponible */
+          padding-bottom: 20px; /* Reduce el margen inferior */
         }
+      }
 
-        /* Botones de navegación */
+      /* Botones de navegación */
+      .comic-reader .nav-button {
+        position: fixed; /* Fija las flechas en la pantalla */
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        z-index: 20;
+      }
+
+      .comic-reader .nav-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .comic-reader .nav-button.prev {
+        left: 20px;
+      }
+
+      .comic-reader .nav-button.next {
+        right: 20px;
+      }
+
+      @media (max-width: 768px) {
         .comic-reader .nav-button {
-            position: fixed; /* Fija las flechas en la pantalla */
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-            z-index: 20;
-        }
-
-        .comic-reader .nav-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+          width: 40px; /* Reduce el tamaño de los botones */
+          height: 40px;
+          font-size: 20px; /* Reduce el tamaño de la flecha */
         }
 
         .comic-reader .nav-button.prev {
-            left: 20px;
+          left: 10px; /* Ajusta la posición */
         }
 
         .comic-reader .nav-button.next {
-            right: 20px;
+          right: 10px; /* Ajusta la posición */
         }
+      }
+
+      /* Estilos para la ventana flotante del índice de páginas */
+      .page-index {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        opacity: 0; /* Inicialmente invisible */
+        transition: opacity 0.5s ease; /* Transición suave */
+      }
+
+      .page-index.visible {
+        opacity: 1; /* Hace visible la ventana */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Menú superior -->
     <header class="reader-header">
-        <!-- Logo -->
-        <div class="header-logo">
-            <a href="/">
-                <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
-            </a>
-        </div>
+      <!-- Logo -->
+      <div class="header-logo">
+        <a href="/">
+          <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics" />
+        </a>
+      </div>
 
-        <!-- Título del cómic -->
-        <div class="comic-title">
-            <%= comic.title %>
-        </div>
+      <!-- Título del cómic -->
+      <div class="comic-title"><%= comic.title %></div>
 
-        <!-- Controles de zoom -->
-        <div class="zoom-controls">
-            <select id="zoom-select" onchange="handleZoomSelect(this.value)">
-                <option value="100">100%</option>
-                <option value="125">125%</option>
-                <option value="150">150%</option>
-                <option value="175">175%</option>
-                <option value="200">200%</option>
-                <option value="custom">Personalizado</option>
-            </select>
-            <div id="custom-zoom-container" style="display: none;">
-                <input type="text" id="custom-zoom" placeholder="Ej: 120" onchange="applyCustomZoom(this.value)">
-                <span>%</span>
-            </div>
+
+      <!-- Controles de zoom -->
+      <div class="zoom-controls">
+        <select id="zoom-select" onchange="handleZoomSelect(this.value)">
+          <option value="100">100%</option>
+          <option value="125">125%</option>
+          <option value="150">150%</option>
+          <option value="175">175%</option>
+          <option value="200">200%</option>
+          <option value="custom">Personalizado</option>
+        </select>
+        <div id="custom-zoom-container" style="display: none">
+          <input
+            type="text"
+            id="custom-zoom"
+            placeholder="Ej: 120"
+            onchange="applyCustomZoom(this.value)"
+          />
+          <span>%</span>
         </div>
+      </div>
     </header>
+
+<!-- Ventana flotante para el índice de páginas -->
+<div id="page-index" class="page-index">
+    <span id="current-page-index">1</span>/<span id="total-pages"><%= comic.pages.length %></span>
+</div>
 
     <!-- Contenido principal -->
     <main class="comic-reader">
-        <!-- Botón de navegación anterior -->
-        <button class="nav-button prev" onclick="prevPage()">&#10094;</button>
+      <!-- Botón de navegación anterior -->
+      <button class="nav-button prev" onclick="prevPage()">&#10094;</button>
 
-        <!-- Imagen actual -->
-        <img id="current-page" src="<%= comic.pages[0] %>" alt="Página del cómic" class="current-page">
+      <!-- Imagen actual -->
+      <img
+        id="current-page"
+        src="<%= comic.pages[0] %>"
+        alt="Página del cómic"
+        class="current-page"
+      />
 
-        <!-- Botón de navegación siguiente -->
-        <button class="nav-button next" onclick="nextPage()">&#10095;</button>
+      <!-- Botón de navegación siguiente -->
+      <button class="nav-button next" onclick="nextPage()">&#10095;</button>
     </main>
 
     <!-- Script para la navegación y el zoom -->
     <script>
-        const pages = <%- JSON.stringify(comic.pages).replace(/</g, '\\u003c') %>; // Páginas del cómic
-        let currentIndex = 0; // Índice de la página actual
-        let currentZoom = 100; // Zoom actual (por defecto 100%)
-        let lastScrollTop = 0; // Última posición de desplazamiento
+            const pages = <%- JSON.stringify(comic.pages).replace(/</g, '\\u003c') %>; // Páginas del cómic
+            let currentIndex = 0; // Índice de la página actual
+            let currentZoom = 100; // Zoom actual (por defecto 100%)
+            let lastScrollTop = 0; // Última posición de desplazamiento
 
-        // Función para mostrar la página actual
-        function showPage(index) {
-            if (index >= 0 && index < pages.length) {
+            // Referencia a la ventana flotante
+const pageIndex = document.getElementById('page-index');
+const currentPageIndex = document.getElementById('current-page-index'); // Definir correctamente
+const totalPages = document.getElementById('total-pages'); // Definir correctamente
+
+            // Función para mostrar la página actual
+            function showPage(index) {
+                if (index >= 0 && index < pages.length) {
+                    const img = document.getElementById('current-page');
+                    img.src = pages[index];
+                    applyZoom(currentZoom); // Aplicar el zoom actual
+                    currentIndex = index;
+
+                    // Actualizar el índice de la página
+                    currentPageIndex.textContent = currentIndex + 1;
+
+                    // Mostrar la ventana flotante
+                    pageIndex.classList.add('visible');
+
+                    // Ocultar la ventana flotante después de 2 segundos
+                    setTimeout(() => {
+                        pageIndex.classList.remove('visible');
+                    }, 2000);
+
+                    // Ocultar/mostrar flechas de navegación
+                    const prevButton = document.querySelector('.nav-button.prev');
+                    const nextButton = document.querySelector('.nav-button.next');
+                    prevButton.style.display = currentIndex === 0 ? 'none' : 'flex';
+                    nextButton.style.display = currentIndex === pages.length - 1 ? 'none' : 'flex';
+
+                    // Desplazar al principio de la página
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Desplazamiento suave
+                }
+            }
+
+
+            // Función para ir a la página anterior
+            function prevPage() {
+                if (currentIndex > 0) {
+                    showPage(currentIndex - 1);
+                }
+            }
+
+            // Función para ir a la página siguiente
+            function nextPage() {
+                if (currentIndex < pages.length - 1) {
+                    showPage(currentIndex + 1);
+                }
+            }
+
+            // Función para aplicar el zoom
+            function applyZoom(zoom) {
                 const img = document.getElementById('current-page');
-                img.src = pages[index];
-                applyZoom(currentZoom); // Aplicar el zoom actual
-                currentIndex = index;
+                currentZoom = parseInt(zoom, 10);
+                img.style.transform = `scale(${currentZoom / 100})`;
+                document.getElementById('custom-zoom').value = currentZoom;
 
-                // Ocultar/mostrar flechas de navegación
-                const prevButton = document.querySelector('.nav-button.prev');
-                const nextButton = document.querySelector('.nav-button.next');
-                prevButton.style.display = currentIndex === 0 ? 'none' : 'flex';
-                nextButton.style.display = currentIndex === pages.length - 1 ? 'none' : 'flex';
-
-                // Desplazar al principio de la página
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Desplazamiento suave
-            }
-        }
-
-        // Función para ir a la página anterior
-        function prevPage() {
-            if (currentIndex > 0) {
-                showPage(currentIndex - 1);
-            }
-        }
-
-        // Función para ir a la página siguiente
-        function nextPage() {
-            if (currentIndex < pages.length - 1) {
-                showPage(currentIndex + 1);
-            }
-        }
-
-        // Función para aplicar el zoom
-        function applyZoom(zoom) {
-            const img = document.getElementById('current-page');
-            currentZoom = parseInt(zoom, 10);
-            img.style.transform = `scale(${currentZoom / 100})`;
-            document.getElementById('custom-zoom').value = currentZoom;
-
-            // Mantener "Personalizado" seleccionado si se usa un valor personalizado
-            if (document.getElementById('custom-zoom-container').style.display === 'flex') {
-                document.getElementById('zoom-select').value = 'custom';
-            } else {
-                document.getElementById('zoom-select').value = currentZoom;
-            }
-        }
-
-        // Función para aplicar un zoom personalizado
-        function applyCustomZoom(zoom) {
-            const zoomValue = parseInt(zoom, 10);
-            if (!isNaN(zoomValue) && zoomValue >= 0) {
-                applyZoom(zoomValue);
-                document.getElementById('zoom-select').value = 'custom'; // Forzar "Personalizado"
-            }
-        }
-
-        // Función para manejar la selección del zoom
-        function handleZoomSelect(value) {
-            const customZoomContainer = document.getElementById('custom-zoom-container');
-            if (value === 'custom') {
-                customZoomContainer.style.display = 'flex';
-            } else {
-                customZoomContainer.style.display = 'none';
-                applyZoom(value);
-            }
-        }
-
-        // Navegación con teclado
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
-                prevPage();
-            } else if (event.key === 'ArrowRight') {
-                nextPage();
-            }
-        });
-
-        // Ocultar/mostrar el menú superior al desplazarse
-        document.addEventListener('scroll', () => {
-            const header = document.querySelector('.reader-header');
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > lastScrollTop) {
-                // Desplazamiento hacia abajo
-                header.classList.add('hidden');
-            } else {
-                // Desplazamiento hacia arriba
-                header.classList.remove('hidden');
+                // Mantener "Personalizado" seleccionado si se usa un valor personalizado
+                if (document.getElementById('custom-zoom-container').style.display === 'flex') {
+                    document.getElementById('zoom-select').value = 'custom';
+                } else {
+                    document.getElementById('zoom-select').value = currentZoom;
+                }
             }
 
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        });
+            // Función para aplicar un zoom personalizado
+            function applyCustomZoom(zoom) {
+                const zoomValue = parseInt(zoom, 10);
+                if (!isNaN(zoomValue) && zoomValue >= 0) {
+                    applyZoom(zoomValue);
+                    document.getElementById('zoom-select').value = 'custom'; // Forzar "Personalizado"
+                }
+            }
 
-        // Inicializar la visibilidad de las flechas
-        showPage(currentIndex);
+            // Función para manejar la selección del zoom
+            function handleZoomSelect(value) {
+                const customZoomContainer = document.getElementById('custom-zoom-container');
+                if (value === 'custom') {
+                    customZoomContainer.style.display = 'flex';
+                } else {
+                    customZoomContainer.style.display = 'none';
+                    applyZoom(value);
+                }
+            }
+
+            // Navegación con teclado
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                    prevPage();
+                } else if (event.key === 'ArrowRight') {
+                    nextPage();
+                }
+            });
+
+            // Ocultar/mostrar el menú superior al desplazarse
+            document.addEventListener('scroll', () => {
+                const header = document.querySelector('.reader-header');
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop) {
+                    // Desplazamiento hacia abajo
+                    header.classList.add('hidden');
+                } else {
+                    // Desplazamiento hacia arriba
+                    header.classList.remove('hidden');
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            // Inicializar la visibilidad de las flechas
+            showPage(currentIndex);
+
+            
     </script>
-</body>
+  </body>
 </html>

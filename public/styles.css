@@ -585,33 +585,7 @@ footer p:first-child {
     background-color: #ff522d;
 }
 
-/* Estilos para la página de la serie */
-.series-detail {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.series-detail h1 {
-    font-size: 32px;
-    color: #bdbdbd;
-    margin-bottom: 20px;
-}
-
-.series-detail p {
-    font-size: 16px;
-    color: #fff;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.series-detail h2 {
-    font-size: 24px;
-    color: #bdbdbd;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
+/* Estilos para la página de series */
 .series-detail .comics-grid {
     display: flex;
     flex-wrap: wrap;
@@ -624,7 +598,7 @@ footer p:first-child {
     border: 1px solid #1e1e1e;
     border-radius: 8px;
     overflow: hidden;
-    width: calc(16.66% - 20px);
+    width: calc(16.66% - 20px); /* 6 cómics por línea en pantallas grandes */
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -640,8 +614,43 @@ footer p:first-child {
 }
 
 .series-detail .comic-card p {
-    font-size: 15px;
+    font-size: 14px;
     color: #fff;
+}
+
+/* Responsive para la página de series */
+@media (max-width: 1024px) {
+    .series-detail .comic-card {
+        width: calc(25% - 20px); /* 4 cómics por línea en tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .series-detail .comic-card {
+        width: calc(33.33% - 20px); /* 3 cómics por línea en móviles grandes */
+    }
+
+    .series-detail .comic-card h3 {
+        font-size: 16px; /* Reduce el tamaño del título */
+    }
+
+    .series-detail .comic-card p {
+        font-size: 12px; /* Reduce el tamaño del texto */
+    }
+}
+
+@media (max-width: 480px) {
+    .series-detail .comic-card {
+        width: calc(50% - 20px); /* 2 cómics por línea en móviles pequeños */
+    }
+
+    .series-detail .comic-card h3 {
+        font-size: 14px; /* Reduce más el tamaño del título */
+    }
+
+    .series-detail .comic-card p {
+        font-size: 10px; /* Reduce más el tamaño del texto */
+    }
 }
 
 /* Estilos para el botón "Leer Online" */
@@ -658,4 +667,13 @@ footer p:first-child {
 
 .btn-read-online:hover {
     background-color: #218838;
+}
+
+/* Estilos para el título de "Cómics relacionados" */
+.related-comics h2 {
+    font-size: 24px;
+    border-bottom: 2px solid #ff522d;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px; /* Añade margen izquierdo */
 }
