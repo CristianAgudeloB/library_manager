@@ -1,14 +1,53 @@
 {
     "_id": { "$oid": "67995751c54806ade03d3b50" },
-    "title": "The Incredible Hulk #10",
-    "volume": "The Incredible Hulk (2024)",
-    "coverUrl": "https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/475234589_934531248794028_8566008889501455172_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeGHEn7Lb8e5qjsSNih0fsmuxSBGHnxZfwvFIEYefFl_C27obj068Tnepk-x1_3KUGDYsnl_6RS3iZK8MZDHFyR4&_nc_ohc=zx7vv2rxl4QQ7kNvgH3lebw&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=Ar1eJLXnFRfllLNxGSme9Ct&oh=00_AYDGNgsHu50TE_ftB1pfcMqsSiNMOtWCUuaipE6b7K7AfQ&oe=67A0A534",
+    "title": "Transformers #14",
+    "volume": "Transformers (2023)",
+    "coverUrl": "https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/474778510_934524658794687_8269018257331799191_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeGuS1umNAMuEpbGha5hgwOztlKLq4OlwGO2Uourg6XAY4MWbouIC-KtSS1fd9-Rx-jw9mchI9klI30-bk3F1zod&_nc_ohc=1luG9ZrzPLsQ7kNvgF36U2B&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=ACLXmFpNZhouhwUQYcYgo39&oh=00_AYAMTLmD6a4BrjPDC3fW8HmZwHRYy15vl_3DDO2M78DL1g&oe=67A144AC",
     "downloadUrls": [
-      "https://www.mediafire.com/file/0atevfvw9b0x9kp/Venom_War_-_Deadpool_%252302.cbr/file"
+      "https://www.mediafire.com/file/0a3f8fyqhjgq8t8/Transformers+#14.CBR/file"
     ],
-    "editorial": "Marvel",
-    "corrector": "Yilweff",
-    "descripcion": "¡EL DETECTIVE FANTASMA LLEVA A HULK A UNA AVENTURA Alucinante A TRAVÉS DEL PASADO! Frozen Charlotte es el monstruo más nuevo que se propone entregar a Hulk a Eldest (y sembrar macabro y asesinato en el camino). Pero Frozen Charlotte surgió una vez antes, y para detenerla, Hulk primero debe comprender su pasado... ¡Así que el detective fantasma lleva a Hulk a una búsqueda negra de un asesino en serie ambientada en la Nueva Orleans de 1850!",
-    "maqueta": "McGuerra",
-    "traductor": "Viggo16"
+    "editorial": "Indie",
+    "corrector": "MutanteOmegaX",
+    "descripcion": "Todo ha cambiado para el Decepticon más intrigante que el universo haya visto. Y el infierno no tiene furia como un Starscream despreciado...",
+    "maqueta": "Noble-VII",
+    "traductor": "Ash Gb Williams"
+}
+
+{
+  "_id": { "$oid": "679b7cfe9c1041382ed34325" },
+  "title": "Transformers #15",
+  "volume": "Transformers (2023)",
+  "coverUrl": "https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/475579413_935944238652729_8878177472945593722_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHHxfa15Ny7mBUgXDo3TbiMGuwQJ_zF-HEa7BAn_MX4cXL5302nLklDXv5OQoI-aeuocWNGIvwjyzgwRTYsduja&_nc_ohc=qBqy-CVfp_8Q7kNvgEZtrW9&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=ArPOhzUEWKa7Tb04y9HSdfo&oh=00_AYD7VqtzOuR5aOuByVmHNLJh4wdN6ZzINyJDI6JfUpS8nA&oe=67A168BF",
+  "downloadUrls": [
+    "https://www.mediafire.com/file/4h8mi8puga3tsq4/Transformers+#15.CBR/file"
+  ],
+  "editorial": "Indie",
+  "corrector": "MutanteOmegaX",
+  "descripcion": "Soundwave se mueve para terminar la guerra con los Autobots... y toda la Tierra sufrirá. Mientras tanto, Optimus Prime y Wheeljack buscan respuestas a un misterio que puede cambiar todo lo que sabían.",
+  "maqueta": "Noble-VII",
+  "traductor": "Ash Gb Williams",
+"pages": [
+    "https://i.postimg.cc/QMnwNKr0/Transformers-015-2025-Digital-Shan-Empire-00001.jpg",
+    "https://i.postimg.cc/wTdPBdS8/Transformers-015-2025-Digital-Shan-Empire-00002.jpg",
+    "https://i.postimg.cc/PJ1RM6vR/Transformers-015-2025-Digital-Shan-Empire-00003.jpg",
+    "https://i.postimg.cc/Pxg7YGJD/Transformers-015-2025-Digital-Shan-Empire-00004.jpg",
+    "https://i.postimg.cc/rm0bDyVc/Transformers-015-2025-Digital-Shan-Empire-00005.jpg",
+    "https://i.postimg.cc/y8Lrn3Ws/Transformers-015-2025-Digital-Shan-Empire-00006.jpg",
+    "https://i.postimg.cc/T3d4rJdt/Transformers-015-2025-Digital-Shan-Empire-00007.jpg",
+    "https://i.postimg.cc/MKbLMFSc/Transformers-015-2025-Digital-Shan-Empire-00008.jpg",
+    "https://i.postimg.cc/HLjvNW75/Transformers-015-2025-Digital-Shan-Empire-00009.jpg",
+    "https://i.postimg.cc/Znzf0rsF/Transformers-015-2025-Digital-Shan-Empire-00010.jpg",
+    "https://i.postimg.cc/KzMqZ9f8/Transformers-015-2025-Digital-Shan-Empire-00011.jpg",
+    "https://i.postimg.cc/g05tb9v7/Transformers-015-2025-Digital-Shan-Empire-00012.jpg",
+    "https://i.postimg.cc/h4Vy65hC/Transformers-015-2025-Digital-Shan-Empire-00013.jpg",
+    "https://i.postimg.cc/GtPXDHZ0/Transformers-015-2025-Digital-Shan-Empire-00014.jpg",
+    "https://i.postimg.cc/RV9sBLHv/Transformers-015-2025-Digital-Shan-Empire-00015.jpg",
+    "https://i.postimg.cc/MKDsKf7V/Transformers-015-2025-Digital-Shan-Empire-00016.jpg",
+    "https://i.postimg.cc/9QQL4XbS/Transformers-015-2025-Digital-Shan-Empire-00017.jpg",
+    "https://i.postimg.cc/Z5sV6kDq/Transformers-015-2025-Digital-Shan-Empire-00018.jpg",
+    "https://i.postimg.cc/QMBSb6RJ/Transformers-015-2025-Digital-Shan-Empire-00019.jpg",
+    "https://i.postimg.cc/3NhB33Wt/Transformers-015-2025-Digital-Shan-Empire-00020.jpg",
+    "https://i.postimg.cc/HxXzGrWJ/Transformers-015-2025-Digital-Shan-Empire-00021.jpg",
+    "https://i.postimg.cc/0NLnHYvR/zzzzzzzindies.jpg"
+]
 }

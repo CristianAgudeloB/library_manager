@@ -12,4 +12,4 @@ const comicSchema = new mongoose.Schema({
     corrector: String
 }, { collection: 'Library Info' });
 
-module.exports = mongoose.model('comic', comicSchema);
+module.exports = mongoose.model('Comic', comicSchema);

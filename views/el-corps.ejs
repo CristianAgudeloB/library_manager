@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Corps - Quiénes somos</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Menú superior -->
+    <header>
+        <div class="header-logo">
+            <a href="/">
+                <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
+            </a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/marvel">Marvel</a></li>
+                <li><a href="/dc">DC</a></li>
+                <li><a href="/indie">Indie</a></li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li><a href="/el-corps">El Corps</a></li>
+            </ul>
+            <!-- Barra de búsqueda -->
+            <div class="search-container">
+                <div class="search-icon" onclick="toggleSearch()">
+                    <img src="/images/lupa.png" alt="Buscar">
+                </div>
+                <form action="/buscar" method="GET" class="search-form">
+                    <input type="text" name="q" placeholder="Buscar por título o volumen..." required>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="el-corps">
+        <section>
+            <h1>Quiénes somos</h1>
+            <div class="about-us">
+                <p>
+                    En <strong>El Corps</strong>, somos un grupo apasionado por los cómics y la cultura pop. Nuestra misión es compartir
+                    nuestra pasión con el mundo, ofreciendo una plataforma donde los amantes de los cómics puedan encontrar
+                    sus historias favoritas y descubrir nuevas joyas.
+                </p>
+                <p>
+                    Nos esforzamos por mantener viva la magia de los cómics, respetando siempre los derechos de los creadores
+                    y propietarios de las obras que compartimos. Este proyecto es sin ánimo de lucro y está hecho con amor
+                    para la comunidad.
+                </p>
+                <h2>Nuestro equipo</h2>
+                <ul>
+                    <li><strong>Juan Pérez</strong> - Fundador y traductor</li>
+                    <li><strong>Ana Gómez</strong> - Diseñadora y maquetadora</li>
+                    <li><strong>Carlos López</strong> - Corrector y editor</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Inifinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados a sus respectivos creadores y propietarios.</p>
+        <p>Creado por Mastercraft Web Developing</p>
+    </footer>
+
+    <!-- Script para mostrar/ocultar la barra de búsqueda -->
+    <script>
+        function toggleSearch() {
+            const searchForm = document.querySelector('.search-form');
+            searchForm.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -58,7 +58,9 @@
                                     <a href="/comic/<%= comic._id %>">
                                         <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
                                         <h3><%= comic.title %></h3>
-                                        <p><%= comic.volume %></p>
+                                        <p>
+                                            <a href="/series/<%= comic.volume %>" class="series-link"><%= comic.volume %></a>
+                                        </p>
                                     </a>
                                 </div>
                             </div>
@@ -80,7 +82,9 @@
                                     <a href="/comic/<%= comic._id %>">
                                         <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
                                         <h3><%= comic.title %></h3>
-                                        <p><%= comic.volume %></p>
+                                        <p>
+                                            <a href="/series/<%= comic.volume %>" class="series-link"><%= comic.volume %></a>
+                                        </p>
                                     </a>
                                 </div>
                             </div>
@@ -102,7 +106,9 @@
                                     <a href="/comic/<%= comic._id %>">
                                         <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
                                         <h3><%= comic.title %></h3>
-                                        <p><%= comic.volume %></p>
+                                        <p>
+                                            <a href="/series/<%= comic.volume %>" class="series-link"><%= comic.volume %></a>
+                                        </p>
                                     </a>
                                 </div>
                             </div>
@@ -124,7 +130,9 @@
                                     <a href="/comic/<%= comic._id %>">
                                         <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
                                         <h3><%= comic.title %></h3>
-                                        <p><%= comic.volume %></p>
+                                        <p>
+                                            <a href="/series/<%= comic.volume %>" class="series-link"><%= comic.volume %></a>
+                                        </p>
                                     </a>
                                 </div>
                             </div>
@@ -145,7 +153,9 @@
                                 <a href="/comic/<%= comic._id %>">
                                     <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
                                     <h3><%= comic.title %></h3>
-                                    <p><%= comic.volume %></p>
+                                    <p>
+                                        <a href="/series/<%= comic.volume %>" class="series-link"><%= comic.volume %></a>
+                                    </p>
                                 </a>
                             </div>
                         <% }) %>

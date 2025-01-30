@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Comic = require('../models/Comic');
+const Series = require('../models/series');
 
 // Ruta para buscar cómics
 router.get('/buscar', async (req, res) => {
@@ -115,6 +116,11 @@ router.get('/novedades', async (req, res) => {
     }
 });
 
+// Ruta para la página de El Corps
+router.get('/el-corps', (req, res) => {
+    res.render('el-corps');
+});
+
 // Ruta para ver detalles de un cómic
 router.get('/comic/:id', async (req, res) => {
     try {
@@ -136,6 +142,20 @@ router.get('/comic/:id', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Error al cargar el cómic');
+    }
+});
+
+// Ruta para la página de la serie
+router.get('/series/:name', async (req, res) => {
+    try {
+        const series = await Series.findOne({ name: req.params.name }).populate('comics');
+        if (!series) {
+            return res.status(404).send('Serie no encontrada');
+        }
+        res.render('series', { series });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al cargar la serie');
     }
 });
 
