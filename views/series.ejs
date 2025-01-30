@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= series.name %></title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
                 <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
             </a>
         </div>
+        <div class="menu-toggle">&#9776;</div> <!-- Botón de menú hamburguesa -->
         <nav class="menu">
             <ul>
                 <li><a href="/">Inicio</a></li>
@@ -49,7 +50,7 @@
                         <div class="comic-card">
                             <a href="/comic/<%= comic._id %>">
                                 <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
-                                <h3><%= comic.title %></h3>
+                                <p><%= comic.title %></p>
                             </a>
                         </div>
                     <% }) %>
@@ -72,6 +73,10 @@
             const searchForm = document.querySelector('.search-form');
             searchForm.classList.toggle('active');
         }
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            const menu = document.querySelector('.menu ul');
+            menu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>

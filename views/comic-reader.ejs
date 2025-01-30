@@ -81,10 +81,10 @@
             max-width: 90%;
             max-height: none; /* Permite que la imagen crezca hacia abajo */
             object-fit: contain;
-            border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease; /* Transición suave para el zoom */
             transform-origin: top center; /* El zoom se expande hacia abajo */
+            padding-bottom: 50px;
         }
 
         /* Botones de navegación */
@@ -104,6 +104,7 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s ease;
+            z-index: 20;
         }
 
         .comic-reader .nav-button:hover {
