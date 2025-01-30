@@ -538,3 +538,19 @@ footer p:first-child {
     font-size: 14px;
     color: #fff;
 }
+
+/* Estilos para el botón "Leer Online" */
+.btn-read-online {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-read-online:hover {
+    background-color: #218838;
+}

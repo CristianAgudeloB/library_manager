@@ -9,7 +9,8 @@ const comicSchema = new mongoose.Schema({
     descripcion: String,
     traductor: String,
     maqueta: String,
-    corrector: String
+    corrector: String,
+    pages: [String]
 }, { collection: 'Library Info' });
 
 module.exports = mongoose.model('Comic', comicSchema);

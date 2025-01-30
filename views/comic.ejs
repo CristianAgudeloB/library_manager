@@ -59,20 +59,21 @@
                 </div>
             </div>
 
-            <!-- Caja de enlaces de descarga -->
-            <div class="info-box">
-                <h3>Enlaces de descarga</h3>
-                <ul>
-                    <% comic.downloadUrls.forEach(url => { %>
-                        <li>
-                            <a href="<%= url %>" target="_blank">
-                                Descargar (<%= url.includes('mega') ? 'Mega' : url.includes('mediafire') ? 'Mediafire' : 'Enlace' %>)
-                            </a>
-                        </li>
-                    <% }) %>
-                </ul>
-            </div>
-        </div>
+<!-- Caja de enlaces de descarga y leer online -->
+<div class="info-box">
+    <h3>Enlaces de descarga</h3>
+    <ul>
+        <% comic.downloadUrls.forEach(url => { %>
+            <li>
+                <a href="<%= url %>" target="_blank">
+                    Descargar (<%= url.includes('mega') ? 'Mega' : url.includes('mediafire') ? 'Mediafire' : 'Enlace' %>)
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/comic/<%= comic._id %>/read" target="_blank" class="btn-read-online">Leer Online</a>
+</div>
+
     </main>
     <!-- Sección de cómics relacionados -->
     <section class="related-comics">

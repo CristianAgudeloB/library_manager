@@ -159,4 +159,18 @@ router.get('/series/:name', async (req, res) => {
     }
 });
 
+// Ruta para el lector web
+router.get('/comic/:id/read', async (req, res) => {
+    try {
+        const comic = await Comic.findById(req.params.id);
+        if (!comic) {
+            return res.status(404).send('Cómic no encontrado');
+        }
+        res.render('comic-reader', { comic });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al cargar el cómic');
+    }
+});
+
 module.exports = router;
