@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Comic = require('../models/Comic');
+const Comic = require('../models/comic');
 const Series = require('../models/series');
 
 // Ruta para buscar cómics
