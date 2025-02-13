@@ -72,7 +72,9 @@
             </li>
         <% }) %>
     </ul>
-    <a href="/comic/<%= comic._id %>/read" target="_blank" class="btn-read-online">Leer Online</a>
+    <% if (comic.pages && comic.pages.length > 0) { %>
+        <a href="/comic/<%= comic._id %>/read" class="btn-read-online">Leer Online</a>
+    <% } %>
 </div>
 
     </main>
