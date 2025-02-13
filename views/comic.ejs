@@ -6,8 +6,25 @@
     <title><%= comic.title %></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/styles.css">
+    <!-- Slick Carousel CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
 </head>
 <body>
+
+        <!-- jQuery (requerido por Slick Carousel) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Slick Carousel JS -->
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <!-- Script para mostrar/ocultar la barra de búsqueda -->
     <!-- Menú superior -->
     <header>
         <div class="header-logo">
@@ -78,33 +95,34 @@
 </div>
 
     </main>
-    <!-- Sección de cómics relacionados -->
-    <section class="related-comics">
-        <h2>Cómics relacionados</h2>
-        <div class="comics-grid">
-            <% if (relacionados.length > 0) { %>
-                <% relacionados.forEach(comic => { %>
-                    <div class="comic-card">
-                        <a href="/comic/<%= comic._id %>">
-                            <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
-                            <h3><%= comic.title %></h3>
-                            <p><%= comic.volume %></p>
-                        </a>
-                    </div>
-                <% }) %>
-            <% } else { %>
-                <p>No hay cómics relacionados.</p>
-            <% } %>
-        </div>
-    </section>
+<!-- Sección de Cómics Relacionados -->
+<section class="related-comics">
+    <h2>Cómics relacionados</h2>
+    <div class="comics-slider">
+      <% if (relacionados.length > 0) { %>
+        <% relacionados.forEach(comic => { %>
+          <div class="comic-slide">
+            <div class="comic-card">
+              <a href="/comic/<%= comic._id %>">
+                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                <h3><%= comic.title %></h3>
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No hay cómics relacionados.</p>
+      <% } %>
+    </div>
+  </section>
+
 
     <footer>
         <p>Inifinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados a sus respectivos creadores y propietarios.</p>
         <p>Creado por Mastercraft Web Developing</p>
     </footer>
-
-    <!-- Script para mostrar/ocultar la barra de búsqueda -->
     <script>
+        
         function toggleSearch() {
             const searchForm = document.querySelector('.search-form');
             searchForm.classList.toggle('active');
@@ -114,6 +132,79 @@
             menu.classList.toggle('active');
         });
     </script>
+
+<script>
+    $(document).ready(function () {
+      $('.related-comics .comics-slider').slick({
+        infinite: true,
+    slidesToShow: 5, // Pantallas grandes
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    prevArrow: '<button type="button" class="slick-prev">←</button>',
+    nextArrow: '<button type="button" class="slick-next">→</button>',
+        responsive: [
+      {
+        breakpoint: 1280, // Laptops grandes
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024, // Tablets en landscape
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "20px", // Ajusta el espacio a los lados
+        },
+      },
+      {
+        breakpoint: 900, // Entre 900px y 1024px
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 820, // Por ejemplo, en 820px de ancho se mostrará 2 slides con ligero centrado
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "10px",
+        },
+      },
+      {
+        breakpoint: 768, // En 768px (tablets en portrait o algunos teléfonos grandes)
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 480, // Para teléfonos pequeños: se muestran 2 slides
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 360, // En dispositivos extremadamente estrechos
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+      });
+    });
+  </script>
+  
 </body>
 </html>
 </body>

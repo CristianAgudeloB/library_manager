@@ -1,138 +1,820 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/*-------------------------------------------
+  Global Styles & Font Import
+-------------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212;
-    color: #e0e0e0;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
-h1, h2, h3 {
-    color: #ffffff;
+h1,
+h2,
+h3 {
+  color: #ffffff;
 }
 
 a {
-    color: #ff522d;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #ff522d;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #d0aaff;
+  color: #d0aaff;
 }
 
-/* Encabezado */
+/*-------------------------------------------
+  Header Component
+-------------------------------------------*/
 header {
-    background-color: #1e1e1e;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Header Logo & Title */
 .header-title h1 {
-    margin: 0;
-    font-size: 24px;
+  margin: 0;
+  font-size: 24px;
 }
 
 .header-logo img {
-    height: 50px;
-    width: auto;
+  height: 50px;
+  width: auto;
 }
 
+/* Navigation Menu */
 .menu {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .menu ul li {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .menu ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 5px 10px;
-    transition: background-color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
 }
 
 .menu ul li a:hover {
-    background-color: #555;
-    border-radius: 5px;
+  background-color: #555;
+  border-radius: 5px;
 }
 
-/* Menú Hamburguesa para móviles */
+/* Hamburger Menu (Mobile) */
 .menu-toggle {
-    display: none; /* Oculta el botón en pantallas grandes */
-    cursor: pointer;
-    font-size: 24px;
-    color: #fff;
-    z-index: 1001;
-    position: relative;
+  display: none; /* Se muestra solo en móviles */
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  z-index: 1001;
+  position: relative;
 }
 
+/* Responsive Navigation */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Muestra el botón en pantallas pequeñas */
-    }
+  .menu-toggle {
+    display: block;
+  }
 
-    .menu ul {
-        display: none; /* Oculta el menú en pantallas pequeñas */
-        flex-direction: column;
-        background-color: #1e1e1e;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        width: 200px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-    }
+  .menu ul {
+    display: none;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
 
-    .menu ul.active {
-        display: flex;
-    }
+  .menu ul.active {
+    display: flex;
+  }
 
-    .menu ul li {
-        margin: 10px 0;
-    }
+  .menu ul li {
+    margin: 10px 0;
+  }
 }
 
-/* Contenido principal */
+/*-------------------------------------------
+  Main Content & Sections
+-------------------------------------------*/
 main {
-    padding: 40px 20px;
+  padding: 40px 20px;
 }
 
 section {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 section h2 {
-    font-size: 24px;
-    border-bottom: 2px solid #ff522d;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+  font-size: 24px;
+  border-bottom: 2px solid #ff522d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-/* Tarjetas de cómics */
+/*-------------------------------------------
+  Comic Cards Component
+-------------------------------------------*/
 .comics-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.comic-card {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.comic-card:hover {
+  transform: translateY(-5px);
+}
+
+.comic-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.comic-card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #ff522d;
+}
+
+.comic-card p {
+  font-size: 14px;
+  color: #bdbdbd;
+}
+
+/* Comic Cards Responsive */
+@media (max-width: 768px) {
+  .comic-card {
+    width: 150px;
+    padding: 10px;
+  }
+
+  .comic-card h2 {
+    font-size: 16px;
+  }
+
+  .comic-card p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comic-card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/*-------------------------------------------
+  Search Component
+-------------------------------------------*/
+.search-container {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #1e1e1e;
+  border-radius: 50%;
+  transition: background 0.3s ease-in-out;
+}
+
+.search-icon:hover {
+  background-color: #2c2c2c;
+}
+
+.search-icon img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.4s ease-in-out;
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-form.active {
+  width: 320px;
+}
+
+.search-form input[type="text"] {
+  font-family: "Poppins", sans-serif;
+  background: #1e1e1e;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.search-form.active input[type="text"] {
+  opacity: 1;
+}
+
+.search-form button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  background-color: #ff522d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.search-form.active button {
+  opacity: 1;
+}
+
+.search-form button:hover {
+  background-color: #e04828;
+}
+
+/* Search Responsive */
+@media (max-width: 768px) {
+  .search-form.active {
+    width: 200px;
+  }
+
+  .search-form input[type="text"] {
+    font-size: 12px;
+  }
+
+  .search-form button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+/*-------------------------------------------
+  Comic Detail Page
+-------------------------------------------*/
+.comic-detail {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+
+.comic-left {
+  flex: 1;
+  max-width: 300px;
+  text-align: center;
+}
+
+.comic-left img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comic-left h2 {
+  font-size: 24px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.comic-right {
+  flex: 2;
+}
+
+/* Info Box within Comic Detail */
+.info-box {
+  background-color: #1e1e1e;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-box h3 {
+  font-size: 20px;
+  color: #fff;
+  border-bottom: 2px solid #ff522d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.info-box p {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.team-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.info-box ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.info-box ul li {
+  margin: 10px 0;
+}
+
+.info-box ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 16px;
+}
+
+.info-box ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Comic Detail Responsive */
+@media (max-width: 768px) {
+  .comic-detail {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .comic-left {
+    max-width: 100%;
+  }
+
+  .comic-right {
+    flex: 1;
+  }
+}
+
+/*-------------------------------------------
+  Custom Scrollbar
+-------------------------------------------*/
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/*-------------------------------------------
+  Comics Slider Component
+-------------------------------------------*/
+.comics-slider {
+  margin: 10px 20px;
+  position: relative;
+  max-width: 97%;
+}
+.comics-slider:not(.slick-initialized) {
+  display: flex;
+  justify-content: center;
+}
+
+.comics-slider .slick-list {
+  overflow: hidden;
+}
+
+.comics-slider .slick-track {
+  display: flex;
+  align-items: center;
+}
+
+/* Asegura que el slide centre su contenido */
+.comics-slider .comic-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px; /* Espaciado entre slides */
+  box-sizing: border-box;
+}
+
+.comics-slider .comic-card {
+  width: 100%;
+  max-width: calc(80%); /* Ajusta este valor según lo deseado */
+  margin: 0 auto;
+}
+
+@media (max-width: 840px) and (min-width: 768px) {
+  /* Aplica solo a las tarjetas dentro del slider */
+  .comics-slider .comic-card {
+    width: 180px; /* Reduce el ancho de la tarjeta */
+    padding: 12px; /* Ajusta el padding para mantener la proporción */
+  }
+}
+
+/* Overriding comic-card dentro del slider */
+.comics-slider .comic-card {
+  background-color: #1e1e1e;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comics-slider .comic-card img {
+  width: 100%;
+  height: auto;
+}
+
+.comics-slider .comic-card h3 {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.comics-slider .comic-card p {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Slider Navigation Arrows */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Slider Arrows Responsive */
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .slick-prev {
+    left: 5px;
+  }
+
+  .slick-next {
+    right: 5px;
+  }
+}
+
+/*-------------------------------------------
+  Footer Component
+-------------------------------------------*/
+footer {
+  background-color: #1e1e1e;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #444;
+}
+
+footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+footer p:first-child {
+  font-weight: bold;
+}
+
+/* Footer Responsive */
+@media (max-width: 768px) {
+  footer {
+    padding: 10px;
+  }
+
+  footer p {
+    font-size: 12px;
+  }
+}
+
+/*-------------------------------------------
+  El Corps Page Component
+-------------------------------------------*/
+.el-corps {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.el-corps h1 {
+  font-size: 32px;
+  color: #bdbdbd;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.el-corps .about-us {
+  background-color: #121212;
+  border: 1px solid #121212;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.el-corps .about-us p {
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.el-corps .about-us h2 {
+  font-size: 24px;
+  color: #bdbdbd;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.el-corps .about-us ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.el-corps .about-us ul li {
+  font-size: 16px;
+  color: #fff;
+  margin: 10px 0;
+}
+
+/*-------------------------------------------
+  Series Detail Page Component
+-------------------------------------------*/
+.series-detail .comics-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.series-detail .comic-card {
+  background-color: #1e1e1e;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  width: calc(16.66% - 20px); /* 6 cómics por línea en pantallas grandes */
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.series-detail .comic-card img {
+  width: 100%;
+  height: auto;
+}
+
+.series-detail .comic-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.series-detail .comic-card p {
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Series Detail Responsive */
+@media (max-width: 1024px) {
+  .series-detail .comic-card {
+    width: calc(25% - 20px); /* 4 cómics por línea en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .series-detail .comic-card {
+    width: calc(33.33% - 20px); /* 3 cómics por línea en móviles grandes */
+  }
+
+  .series-detail .comic-card h3 {
+    font-size: 16px;
+  }
+
+  .series-detail .comic-card p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .series-detail .comic-card {
+    width: calc(50% - 20px); /* 2 cómics por línea en móviles pequeños */
+  }
+
+  .series-detail .comic-card h3 {
+    font-size: 14px;
+  }
+
+  .series-detail .comic-card p {
+    font-size: 10px;
+  }
+}
+
+/*-------------------------------------------
+  Buttons
+-------------------------------------------*/
+/* Botón "Ver Serie" */
+.btn-series {
+  display: inline-block;
+  margin-top: -5px;
+  padding: 10px 20px;
+  background-color: #ff522d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-series:hover {
+  background-color: #ff522d;
+}
+
+/* Botón "Leer Online" */
+.btn-read-online {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-read-online:hover {
+  background-color: #218838;
+}
+
+/*-------------------------------------------
+  Related Comics Section
+-------------------------------------------*/
+.related-comics h2 {
+  font-size: 24px;
+  border-bottom: 2px solid #ff522d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+.related-comics {
+    margin: 10px 25px;
+    position: relative;
+    max-width: 97%;
+    /*display: flex;*/
+    justify-content: center;
+  }
+
+  .related-comics .slick-list {
+    overflow: hidden;
+  }
+  
+  .related-comics .slick-track {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Asegura que el slide centre su contenido */
+  .related-comics .comic-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px; /* Espaciado entre slides */
+    box-sizing: border-box;
+  }
+  
+  .related-comics .comic-card {
+    width: 100%;
+    max-width: calc(80%); /* Ajusta este valor según lo deseado */
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 840px) and (min-width: 768px) {
+    /* Aplica solo a las tarjetas dentro del slider */
+    .related-comics .comic-card {
+      width: 180px; /* Reduce el ancho de la tarjeta */
+      padding: 12px; /* Ajusta el padding para mantener la proporción */
+    }
+  }
+  
+  /* Overriding comic-card dentro del slider */
+  .related-comics .comic-card {
+    background-color: #1e1e1e;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .related-comics .comic-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .related-comics .comic-card h3 {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  
+  .related-comics .comic-card p {
+    font-size: 12px;
+    color: #666;
+  }
+
+
+  /*Series Comics Component*/
+
+  .series-detail .comics-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-}
-
-.comic-card {
+  }
+  
+  .series-detail .comic-card {
     background-color: #1e1e1e;
     border-radius: 10px;
     overflow: hidden;
@@ -141,539 +823,48 @@ section h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 15px;
     transition: transform 0.3s ease;
-}
-
-.comic-card:hover {
+  }
+  
+  .series-detail .comic-card:hover {
     transform: translateY(-5px);
-}
-
-.comic-card img {
+  }
+  
+  .series-detail .comic-card img {
     width: 100%;
     height: auto;
     border-radius: 5px;
-}
-
-.comic-card h2 {
+  }
+  
+  .series-detail .comic-card h2 {
     font-size: 18px;
     margin: 10px 0;
     color: #ff522d;
-}
-
-.comic-card p {
+  }
+  
+  .series-detail .comic-card p {
     font-size: 14px;
     color: #bdbdbd;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  /* Comic Cards Responsive */
+  @media (max-width: 768px) {
     .comic-card {
-        width: 150px; /* Reduce el ancho de las tarjetas en móviles */
-        padding: 10px;
+      width: 150px;
+      padding: 10px;
     }
-
+  
     .comic-card h2 {
-        font-size: 16px; /* Reduce el tamaño del título */
+      font-size: 16px;
     }
-
+  
     .comic-card p {
-        font-size: 12px; /* Reduce el tamaño del texto */
+      font-size: 12px;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .comic-card {
-        width: 100%; /* Ocupa todo el ancho en móviles pequeños */
-        margin-bottom: 10px;
+      width: 100%;
+      margin-bottom: 10px;
     }
-}
-
-/* Estilos para la barra de búsqueda */
-.search-container {
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.search-icon {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #1e1e1e;
-    border-radius: 50%;
-    transition: background 0.3s ease-in-out;
-}
-
-.search-icon:hover {
-    background-color: #2c2c2c;
-}
-
-.search-icon img {
-    width: 22px;
-    height: 22px;
-    filter: brightness(0) invert(1);
-}
-
-.search-form {
-    display: flex;
-    align-items: center;
-    width: 0;
-    overflow: hidden;
-    transition: width 0.4s ease-in-out;
-    background: #1e1e1e;
-    border-radius: 8px;
-    padding: 6px 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.search-form.active {
-    width: 320px;
-}
-
-.search-form input[type="text"] {
-    font-family: 'Poppins', sans-serif;
-    background: #1e1e1e;
-    color: #ffffff;
-    padding: 10px;
-    font-size: 13px;
-    border: none;
-    border-radius: 4px;
-    width: 100%;
-    outline: none;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.search-form.active input[type="text"] {
-    opacity: 1;
-}
-
-.search-form button {
-    padding: 10px 16px;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff522d;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    opacity: 0;
-    transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.search-form.active button {
-    opacity: 1;
-}
-
-.search-form button:hover {
-    background-color: #e04828;
-}
-
-@media (max-width: 768px) {
-    .search-form.active {
-        width: 200px; /* Reduce el ancho en móviles */
-    }
-
-    .search-form input[type="text"] {
-        font-size: 12px; /* Reduce el tamaño del texto */
-    }
-
-    .search-form button {
-        padding: 8px 12px; /* Reduce el tamaño del botón */
-        font-size: 12px;
-    }
-}
-
-/* Estilos para la página de detalles del cómic */
-.comic-detail {
-    display: flex;
-    gap: 40px;
-    padding: 20px;
-}
-
-.comic-left {
-    flex: 1;
-    max-width: 300px;
-    text-align: center;
-}
-
-.comic-left img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.comic-left h2 {
-    font-size: 24px;
-    margin-top: 20px;
-    color: #fff;
-}
-
-.comic-right {
-    flex: 2;
-}
-
-.info-box {
-    background-color: #1e1e1e;
-    border: 1px solid #1e1e1e;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.info-box h3 {
-    font-size: 20px;
-    color: #fff;
-    border-bottom: 2px solid #ff522d;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.info-box p {
-    font-size: 16px;
-    color: #fff;
-    margin-top: 10px;
-}
-
-.team-info p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #fff;
-}
-
-.info-box ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.info-box ul li {
-    margin: 10px 0;
-}
-
-.info-box ul li a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-}
-
-.info-box ul li a:hover {
-    text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-    .comic-detail {
-        flex-direction: column; /* Cambia a una columna en móviles */
-        gap: 20px;
-    }
-
-    .comic-left {
-        max-width: 100%; /* Ocupa todo el ancho */
-    }
-
-    .comic-right {
-        flex: 1;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #181818;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 10px;
-    transition: background 0.3s;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #666;
-}
-
-/* Estilos para el slider de cómics */
-.comics-slider {
-    margin: 10px 8px;
-    position: relative;
-    display: flex;
-    max-width: 97%;
-    justify-content: center;
-}
-
-.comics-slider .slick-list {
-    overflow: hidden;
-}
-
-.comics-slider .slick-track {
-    display: flex;
-    align-items: center;
-}
-
-.comics-slider .comic-slide {
-    width: 20%;
-    padding: 0 10px;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.comics-slider .comic-card {
-    background-color: #1e1e1e;
-    border: 1px solid #1e1e1e;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.comics-slider .comic-card img {
-    width: 100%;
-    height: auto;
-}
-
-.comics-slider .comic-card h3 {
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-.comics-slider .comic-card p {
-    font-size: 12px;
-    color: #666;
-}
-
-/* Estilos para las flechas de navegación */
-.slick-prev, .slick-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 1;
-    transition: background-color 0.3s ease;
-}
-
-.slick-prev {
-    left: 10px;
-}
-
-.slick-next {
-    right: 10px;
-}
-
-.slick-prev:hover, .slick-next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-@media (max-width: 768px) {
-    .slick-prev, .slick-next {
-        width: 30px; /* Reduce el tamaño de las flechas */
-        height: 30px;
-        font-size: 16px;
-    }
-
-    .slick-prev {
-        left: 5px; /* Ajusta la posición */
-    }
-
-    .slick-next {
-        right: 5px; /* Ajusta la posición */
-    }
-}
-
-/* Estilos para el pie de página */
-footer {
-    background-color: #1e1e1e;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 1px solid #444;
-}
-
-footer p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-footer p:first-child {
-    font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    footer {
-        padding: 10px;
-    }
-
-    footer p {
-        font-size: 12px; /* Reduce el tamaño del texto */
-    }
-}
-
-/* Estilos para la página El Corps */
-.el-corps {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.el-corps h1 {
-    font-size: 32px;
-    color: #bdbdbd;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.el-corps .about-us {
-    background-color: #121212;
-    border: 1px solid #121212;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.el-corps .about-us p {
-    font-size: 16px;
-    color: #fff;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.el-corps .about-us h2 {
-    font-size: 24px;
-    color: #bdbdbd;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.el-corps .about-us ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.el-corps .about-us ul li {
-    font-size: 16px;
-    color: #fff;
-    margin: 10px 0;
-}
-
-/* Estilos para el botón "Ver Serie" */
-.btn-series {
-    display: inline-block;
-    margin-top: -5px;
-    padding: 10px 20px;
-    background-color: #ff522d;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-series:hover {
-    background-color: #ff522d;
-}
-
-/* Estilos para la página de series */
-.series-detail .comics-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-}
-
-.series-detail .comic-card {
-    background-color: #1e1e1e;
-    border: 1px solid #1e1e1e;
-    border-radius: 8px;
-    overflow: hidden;
-    width: calc(16.66% - 20px); /* 6 cómics por línea en pantallas grandes */
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.series-detail .comic-card img {
-    width: 100%;
-    height: auto;
-}
-
-.series-detail .comic-card h3 {
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-.series-detail .comic-card p {
-    font-size: 14px;
-    color: #fff;
-}
-
-/* Responsive para la página de series */
-@media (max-width: 1024px) {
-    .series-detail .comic-card {
-        width: calc(25% - 20px); /* 4 cómics por línea en tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    .series-detail .comic-card {
-        width: calc(33.33% - 20px); /* 3 cómics por línea en móviles grandes */
-    }
-
-    .series-detail .comic-card h3 {
-        font-size: 16px; /* Reduce el tamaño del título */
-    }
-
-    .series-detail .comic-card p {
-        font-size: 12px; /* Reduce el tamaño del texto */
-    }
-}
-
-@media (max-width: 480px) {
-    .series-detail .comic-card {
-        width: calc(50% - 20px); /* 2 cómics por línea en móviles pequeños */
-    }
-
-    .series-detail .comic-card h3 {
-        font-size: 14px; /* Reduce más el tamaño del título */
-    }
-
-    .series-detail .comic-card p {
-        font-size: 10px; /* Reduce más el tamaño del texto */
-    }
-}
-
-/* Estilos para el botón "Leer Online" */
-.btn-read-online {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-read-online:hover {
-    background-color: #218838;
-}
-
-/* Estilos para el título de "Cómics relacionados" */
-.related-comics h2 {
-    font-size: 24px;
-    border-bottom: 2px solid #ff522d;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    margin-left: 20px; /* Añade margen izquierdo */
-}
+  }
