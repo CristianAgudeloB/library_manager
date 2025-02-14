@@ -11,6 +11,6 @@ const comicSchema = new mongoose.Schema({
     maqueta: String,
     corrector: String,
     pages: [String]
-}, { collection: 'Library Info' });
+}, { collection: 'Library Info', timestamps: true });
 
 module.exports = mongoose.model('Comic', comicSchema);

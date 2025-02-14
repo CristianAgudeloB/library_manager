@@ -920,3 +920,45 @@ footer p:first-child {
     font-size: 12px;
     color: #666;
   }
+
+  /*-------------------------------------------
+  Editorial Pagination
+-------------------------------------------*/
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination a.pagination-link,
+.pagination span.pagination-link {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #121212;
+  background-color: #ff522d;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination a.pagination-link:hover {
+  background-color: #e04323;
+}
+
+.pagination span.pagination-link.current {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+}
+
+.pagination span.pagination-ellipsis {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 12px;
+  color: #333;
+}
+.pagination a.disabled, .pagination span.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

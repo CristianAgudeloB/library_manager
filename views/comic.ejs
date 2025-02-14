@@ -6,7 +6,6 @@
     <title><%= comic.title %></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/styles.css">
-    <!-- Slick Carousel CSS -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -19,12 +18,8 @@
     />
 </head>
 <body>
-
-        <!-- jQuery (requerido por Slick Carousel) -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Slick Carousel JS -->
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        <!-- Script para mostrar/ocultar la barra de búsqueda -->
     <!-- Menú superior -->
     <header>
         <div class="header-logo">
@@ -89,9 +84,9 @@
             </li>
         <% }) %>
     </ul>
-    <% if (comic.pages && comic.pages.length > 0) { %>
-        <a href="/comic/<%= comic._id %>/read" class="btn-read-online">Leer Online</a>
-    <% } %>
+    <% if (comic.pages && comic.pages.length > 0 && comic.pages.filter(function(page) { return page.trim() !== ""; }).length > 0) { %>
+      <a href="/comic/<%= comic._id %>/read" class="btn-read-online">Leer Online</a>
+  <% } %>
 </div>
 
     </main>
