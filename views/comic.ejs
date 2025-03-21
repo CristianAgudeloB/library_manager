@@ -20,14 +20,13 @@
 <body>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- Menú superior -->
     <header>
         <div class="header-logo">
             <a href="/">
                 <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
             </a>
         </div>
-        <div class="menu-toggle">&#9776;</div> <!-- Botón de menú hamburguesa -->
+        <div class="menu-toggle">&#9776;</div>
         <nav class="menu">
             <ul>
                 <li><a href="/">Inicio</a></li>
@@ -37,7 +36,6 @@
                 <li><a href="/novedades">Novedades</a></li>
                 <li><a href="/el-corps">El Corps</a></li>
             </ul>
-            <!-- Barra de búsqueda -->
             <div class="search-container">
                 <div class="search-icon" onclick="toggleSearch()">
                     <img src="/images/lupa.png" alt="Buscar">
@@ -50,18 +48,14 @@
         </nav>
     </header>
 
-    <!-- Contenido principal -->
     <main class="comic-detail">
-        <!-- Sección izquierda: Imagen y título -->
         <div class="comic-left">
             <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
             <h2><%= comic.title %></h2>
             <a href="/series/<%= comic.volume %>" class="btn-series">Ver Serie</a>
         </div>
 
-        <!-- Sección derecha: Información adicional -->
         <div class="comic-right">
-            <!-- Caja de descripción y equipo de tradumaqueta -->
             <div class="info-box">
                 <h3>Descripción</h3>
                 <p><%= comic.descripcion %></p>
@@ -72,7 +66,6 @@
                 </div>
             </div>
 
-<!-- Caja de enlaces de descarga y leer online -->
 <div class="info-box">
     <h3>Enlaces de descarga</h3>
     <ul>
@@ -90,7 +83,6 @@
 </div>
 
     </main>
-<!-- Sección de Cómics Relacionados -->
 <section class="related-comics">
     <h2>Cómics relacionados</h2>
     <div class="comics-slider">
@@ -132,7 +124,7 @@
     $(document).ready(function () {
       $('.related-comics .comics-slider').slick({
         infinite: true,
-    slidesToShow: 5, // Pantallas grandes
+    slidesToShow: 5,
     slidesToScroll: 1,
     arrows: true,
     dots: false,
@@ -140,23 +132,23 @@
     nextArrow: '<button type="button" class="slick-next">→</button>',
         responsive: [
       {
-        breakpoint: 1280, // Laptops grandes
+        breakpoint: 1280,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 1024, // Tablets en landscape
+        breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px", // Ajusta el espacio a los lados
+          centerPadding: "20px",
         },
       },
       {
-        breakpoint: 900, // Entre 900px y 1024px
+        breakpoint: 900,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -164,7 +156,7 @@
         },
       },
       {
-        breakpoint: 820, // Por ejemplo, en 820px de ancho se mostrará 2 slides con ligero centrado
+        breakpoint: 820,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -173,7 +165,7 @@
         },
       },
       {
-        breakpoint: 768, // En 768px (tablets en portrait o algunos teléfonos grandes)
+        breakpoint: 768,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -181,7 +173,7 @@
         },
       },
       {
-        breakpoint: 480, // Para teléfonos pequeños: se muestran 2 slides
+        breakpoint: 480,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -189,7 +181,7 @@
         },
       },
       {
-        breakpoint: 360, // En dispositivos extremadamente estrechos
+        breakpoint: 360,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

@@ -6,16 +6,60 @@
     <title>El Corps - Quiénes somos</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Estilos adicionales para los cuadros del equipo */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-category {
+            background: #1e1e1e;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-category h3 {
+            color: #e0e0e0;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .team-box {
+            background: #2c2c2c;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #1e1e1e;
+            font-size: 0.9rem;
+            color: #ffffff;
+            transition: transform 0.2s ease;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <!-- Menú superior -->
     <header>
         <div class="header-logo">
             <a href="/">
                 <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
             </a>
         </div>
-        <div class="menu-toggle">&#9776;</div> <!-- Botón de menú hamburguesa -->
+        <div class="menu-toggle">&#9776;</div>
         <nav class="menu">
             <ul>
                 <li><a href="/">Inicio</a></li>
@@ -25,7 +69,6 @@
                 <li><a href="/novedades">Novedades</a></li>
                 <li><a href="/el-corps">El Corps</a></li>
             </ul>
-            <!-- Barra de búsqueda -->
             <div class="search-container">
                 <div class="search-icon" onclick="toggleSearch()">
                     <img src="/images/lupa.png" alt="Buscar">
@@ -38,13 +81,12 @@
         </nav>
     </header>
 
-    <!-- Contenido principal -->
     <main class="el-corps">
         <section>
             <h1>Quiénes somos</h1>
             <div class="about-us">
                 <p>
-                    En <strong>El Corps</strong>, somos un grupo apasionado por los cómics y la cultura pop. Nuestra misión es compartir
+                    En <strong>Infinity Comics</strong>, somos un grupo apasionado por los cómics y la cultura pop. Nuestra misión es compartir
                     nuestra pasión con el mundo, ofreciendo una plataforma donde los amantes de los cómics puedan encontrar
                     sus historias favoritas y descubrir nuevas joyas.
                 </p>
@@ -54,22 +96,97 @@
                     para la comunidad.
                 </p>
                 <h2>Nuestro equipo</h2>
-                <ul>
-                    <li><strong>Juan Pérez</strong> - Fundador y traductor</li>
-                    <li><strong>Ana Gómez</strong> - Diseñadora y maquetadora</li>
-                    <li><strong>Carlos López</strong> - Corrector y editor</li>
-                </ul>
+
+                <div class="team-container">
+                    <div class="team-category">
+                        <h3>Staff Administrativo</h3>
+                        <div class="team-boxes">
+                            <div class="team-box">Letho (Corrector)</div>
+                            <div class="team-box">BrunoRules (Tradumaqueta)</div>
+                            <div class="team-box">Pete Starker (Traductor)</div>
+                            <div class="team-box">JageR (Tradumaqueta)</div>
+                            <div class="team-box">Ferchino (Maqueta)</div>
+                            <div class="team-box">Reverse Flash (Traductor)</div>
+                            <div class="team-box">Ash Gb Williams (Traductor)</div>
+                        </div>
+                    </div>
+
+                    <div class="team-category">
+                        <h3>Traductores</h3>
+                        <div class="team-boxes">
+                            <div class="team-box">Ash Gb Williams</div>
+                            <div class="team-box">Checho</div>
+                            <div class="team-box">Crash Smasher</div>
+                            <div class="team-box">Rojo</div>
+                            <div class="team-box">Viggo16</div>
+                            <div class="team-box">Rojo</div>
+                            <div class="team-box">Grayson</div>
+                            <div class="team-box">Shaddap</div>
+                            <div class="team-box">Hunter DJ</div>
+                            <div class="team-box">Gevy</div>
+                            <div class="team-box">RxR</div>
+                            <div class="team-box">Sr. Gris</div>
+                            <div class="team-box">Heisenberg</div>
+                        </div>
+                    </div>
+
+                    <div class="team-category">
+                        <h3>Maquetadores</h3>
+                        <div class="team-boxes">
+                            <div class="team-box">Moony Stark</div>
+                            <div class="team-box">The Dark Bat</div>
+                            <div class="team-box">Torch Knight</div>
+                            <div class="team-box">Geoblue 86</div>
+                            <div class="team-box">Noble-VII</div>
+                            <div class="team-box">Crossbreaker</div>
+                            <div class="team-box">Huascaj</div>
+                            <div class="team-box">Nomi Sunraider</div>
+                            <div class="team-box">Fenix</div>
+                            <div class="team-box">Steppenwolf</div>
+                            <div class="team-box">BeCool</div>
+                            <div class="team-box">Mal-X</div>
+                            <div class="team-box">Leux_01</div>
+                            <div class="team-box">Iro</div>
+                            <div class="team-box">G-Ton1c</div>              
+                        </div>
+                    </div>
+
+                    <div class="team-category">
+                        <h3>Correctores</h3>
+                        <div class="team-boxes">
+                            <div class="team-box">YilWeff</div>
+                            <div class="team-box">Grif</div>
+                            <div class="team-box">The Runaway</div>
+                            <div class="team-box">Khonshu Rec</div>
+                            <div class="team-box">MutanteOmegaX</div>
+                            <div class="team-box">Knightcrawler</div>
+                        </div>
+                    </div>
+
+                    <div class="team-category">
+                        <h3>Línea de Reserva</h3>
+                        <div class="team-boxes">
+                            <div class="team-box">McGuerra (Maqueta)</div>
+                            <div class="team-box">Izeppi (Maqueta)</div>
+                            <div class="team-box">Absolute (Traductor)</div>
+                            <div class="team-box">Spider-Bat (Corrector)</div>
+                            <div class="team-box">Chico Bestia (Corrector)</div>
+                            <div class="team-box">Tony-MTC (Traductor)</div>
+                            <div class="team-box">Daniel-MTC (Maqueta)</div>
+                            <div class="team-box">Vnshws (Maqueta)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </section>
     </main>
 
-    <!-- Pie de página -->
     <footer>
         <p>Inifinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados a sus respectivos creadores y propietarios.</p>
-        <p>Creado por Mastercraft Web Developing</p>
+        <p>Web desarrollada por Absolute</p>
     </footer>
 
-    <!-- Script para mostrar/ocultar la barra de búsqueda -->
     <script>
         function toggleSearch() {
             const searchForm = document.querySelector('.search-form');
