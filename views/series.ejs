@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <!-- Menú superior -->
     <header>
         <div class="header-logo">
             <a href="/">
                 <img src="/images/logo.png" alt="Logo de la Biblioteca de Cómics">
             </a>
         </div>
-        <div class="menu-toggle">&#9776;</div> <!-- Botón de menú hamburguesa -->
+        <div class="menu-toggle">&#9776;</div>
         <nav class="menu">
             <ul>
                 <li><a href="/">Inicio</a></li>
@@ -25,7 +24,6 @@
                 <li><a href="/novedades">Novedades</a></li>
                 <li><a href="/el-corps">El Corps</a></li>
             </ul>
-            <!-- Barra de búsqueda -->
             <div class="search-container">
                 <div class="search-icon" onclick="toggleSearch()">
                     <img src="/images/lupa.png" alt="Buscar">
@@ -38,7 +36,6 @@
         </nav>
     </header>
 
-    <!-- Contenido principal -->
     <main class="series-detail">
         <section>
             <h1><%= series.name %></h1>
@@ -61,13 +58,11 @@
         </section>
     </main>
 
-    <!-- Pie de página -->
     <footer>
-        <p>Inifinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados a sus respectivos creadores y propietarios.</p>
-        <p>Creado por Mastercraft Web Developing</p>
+        <p>Infinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados a sus respectivos creadores y propietarios.</p>
+        <p>Web desarrollada por Absolute</p>
     </footer>
 
-    <!-- Script para mostrar/ocultar la barra de búsqueda -->
     <script>
         function toggleSearch() {
             const searchForm = document.querySelector('.search-form');
