@@ -211,16 +211,42 @@ router.get('/comic/:id', async (req, res) => {
             return res.status(404).send('Cómic no encontrado');
         }
 
-        // Obtener cómics relacionados (misma editorial o título similar)
-        const relacionados = await Comic.find({
-            $or: [
-                { editorial: comic.editorial }, // Misma editorial
-                { title: { $regex: comic.title.split(' ')[0], $options: 'i' } } // Título similar
-            ],
-            _id: { $ne: comic._id } // Excluir el cómic actual
-        }).limit(6); // Limitar a 4 cómics relacionados
+// Obtener cómics relacionados con prioridad
+const relacionados = await Comic.aggregate([
+  {
+      $match: {
+          _id: { $ne: comic._id },
+          $or: [
+              { volume: comic.volume },
+              { 
+                  $and: [
+                      { title: { $regex: `^${comic.title.split(' ')[0]}`, $options: 'i' } }, // Título similar
+                      { volume: { $ne: comic.volume } }
+                  ]
+              },
+              { editorial: comic.editorial }
+          ]
+      }
+  },
+  {
+      $addFields: {
+          priority: {
+              $switch: {
+                  branches: [
+                      { case: { $eq: ["$volume", comic.volume] }, then: 3 },
+                      { case: { $regexMatch: { input: "$title", regex: `^${comic.title.split(' ')[0]}`, options: "i" } }, then: 2 },
+                      { case: { $eq: ["$editorial", comic.editorial] }, then: 1 }
+                  ],
+                  default: 0
+              }
+          }
+      }
+  },
+  { $sort: { priority: -1, createdAt: -1 } },
+  { $limit: 6 }
+]);
 
-        res.render('comic', { comic, relacionados });
+res.render('comic', { comic, relacionados });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error al cargar el cómic');

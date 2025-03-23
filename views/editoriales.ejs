@@ -48,14 +48,9 @@
           <% if (comics && comics.length > 0) { %> <% comics.forEach(comic => {
           %>
           <div class="comic-card">
-            <a href="/comic/<%= comic._id %>">
+            <a href="/series/<%= comic.volume %>">
               <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
-              <h3><%= comic.title %></h3>
-              <p>
-                <a href="/series/<%= comic.volume %>" class="series-link">
-                  <%= comic.volume %>
-                </a>
-              </p>
+              <h3><%= comic.volume %></h3>
             </a>
           </div>
           <% }); %> <% } else { %>
