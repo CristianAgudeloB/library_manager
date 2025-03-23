@@ -56,86 +56,132 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Ruta para Marvel con paginación
+// Ruta para Marvel mostrando solo #01 por serie
 router.get('/marvel', async (req, res) => {
-    try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = 20;
-      const skip = (page - 1) * limit;
-      
-      const total = await Comic.countDocuments({ editorial: 'Marvel' });
-      const totalPages = Math.ceil(total / limit);
-      
-      const comics = await Comic.find({ editorial: 'Marvel' })
-                                .skip(skip)
-                                .limit(limit);
-      
-      res.render('editoriales', { 
-        isHome: false,
-        editorial: 'Marvel',
-        comics,
-        currentPage: page,
-        totalPages
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error al cargar los cómics de Marvel');
-    }
-  });
-  
-  // Ruta para DC con paginación
-  router.get('/dc', async (req, res) => {
-    try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = 20;
-      const skip = (page - 1) * limit;
-      
-      const total = await Comic.countDocuments({ editorial: 'DC' });
-      const totalPages = Math.ceil(total / limit);
-      
-      const comics = await Comic.find({ editorial: 'DC' })
-                                .skip(skip)
-                                .limit(limit);
-      
-      res.render('editoriales', { 
-        isHome: false,
-        editorial: 'DC',
-        comics,
-        currentPage: page,
-        totalPages
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error al cargar los cómics de DC');
-    }
-  });
-  
-  // Ruta para Indie con paginación
-  router.get('/indie', async (req, res) => {
-    try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = 20;
-      const skip = (page - 1) * limit;
-      
-      const total = await Comic.countDocuments({ editorial: 'Indie' });
-      const totalPages = Math.ceil(total / limit);
-      
-      const comics = await Comic.find({ editorial: 'Indie' })
-                                .skip(skip)
-                                .limit(limit);
-      
-      res.render('editoriales', { 
-        isHome: false,
-        editorial: 'Indie',
-        comics,
-        currentPage: page,
-        totalPages
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error al cargar los cómics independientes');
-    }
-  });
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 20;
+    const skip = (page - 1) * limit;
+
+    // Obtener series únicas con al menos un #01
+    const volumes = await Comic.distinct('volume', { 
+      editorial: 'Marvel',
+      title: { $regex: /#01/, $options: 'i' } 
+    });
+    const total = volumes.length;
+    const totalPages = Math.ceil(total / limit);
+
+    const comics = await Comic.aggregate([
+      { 
+        $match: { 
+          editorial: 'Marvel',
+          title: { $regex: /#01/, $options: 'i' } 
+        } 
+      },
+      { $sort: { volume: 1, createdAt: 1 } },
+      { $group: { _id: "$volume", comic: { $first: "$$ROOT" } } },
+      { $replaceRoot: { newRoot: "$comic" } },
+      { $sort: { volume: 1 } },
+      { $skip: skip },
+      { $limit: limit }
+    ]);
+
+    res.render('editoriales', { 
+      isHome: false,
+      editorial: 'Marvel',
+      comics,
+      currentPage: page,
+      totalPages
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al cargar los cómics de Marvel');
+  }
+});
+
+// Ruta para DC mostrando solo #01 por serie
+router.get('/dc', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 20;
+    const skip = (page - 1) * limit;
+
+    const volumes = await Comic.distinct('volume', { 
+      editorial: 'DC',
+      title: { $regex: /#01/, $options: 'i' } 
+    });
+    const total = volumes.length;
+    const totalPages = Math.ceil(total / limit);
+
+    const comics = await Comic.aggregate([
+      { 
+        $match: { 
+          editorial: 'DC',
+          title: { $regex: /#01/, $options: 'i' } 
+        } 
+      },
+      { $sort: { volume: 1, createdAt: 1 } },
+      { $group: { _id: "$volume", comic: { $first: "$$ROOT" } } },
+      { $replaceRoot: { newRoot: "$comic" } },
+      { $sort: { volume: 1 } },
+      { $skip: skip },
+      { $limit: limit }
+    ]);
+
+    res.render('editoriales', { 
+      isHome: false,
+      editorial: 'DC',
+      comics,
+      currentPage: page,
+      totalPages
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al cargar los cómics de DC');
+  }
+});
+
+// Ruta para Indie mostrando solo #01 por serie
+router.get('/indie', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 20;
+    const skip = (page - 1) * limit;
+
+    const volumes = await Comic.distinct('volume', { 
+      editorial: 'Indie',
+      title: { $regex: /#01/, $options: 'i' } 
+    });
+    const total = volumes.length;
+    const totalPages = Math.ceil(total / limit);
+
+    const comics = await Comic.aggregate([
+      { 
+        $match: { 
+          editorial: 'Indie',
+          title: { $regex: /#01/, $options: 'i' } 
+        } 
+      },
+      { $sort: { volume: 1, createdAt: 1 } },
+      { $group: { _id: "$volume", comic: { $first: "$$ROOT" } } },
+      { $replaceRoot: { newRoot: "$comic" } },
+      { $sort: { volume: 1 } },
+      { $skip: skip },
+      { $limit: limit }
+    ]);
+
+    res.render('editoriales', { 
+      isHome: false,
+      editorial: 'Indie',
+      comics,
+      currentPage: page,
+      totalPages
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al cargar los cómics independientes');
+  }
+});
 
 // Ruta para Novedades
 router.get('/novedades', async (req, res) => {

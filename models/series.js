@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const seriesSchema = new mongoose.Schema({
-    name: String, // Nombre de la serie
-    description: String, // Descripción de la serie
+    name: String,
+    description: String,
     comics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comic' }]
 }, { collection: 'series_info', timestamps: true });
 

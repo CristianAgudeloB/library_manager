@@ -43,7 +43,7 @@
 
     <main>
       <section>
-        <h2>Cómics <%= editorial %></h2>
+        <h2>Series <%= editorial %></h2>
         <div class="comics-grid">
           <% if (comics && comics.length > 0) { %> <% comics.forEach(comic => {
           %>
@@ -120,7 +120,6 @@
       <p>Web desarrollada por Absolute</p>
     </footer>
 
-    <script src="/js/main.js"></script>
     <script>
       function toggleSearch() {
         const searchForm = document.querySelector(".search-form");
