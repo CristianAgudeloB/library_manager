@@ -3,33 +3,54 @@ const router = express.Router();
 const Comic = require('../models/comic');
 const Series = require('../models/series');
 
+function buildFlexibleRegex(query) {
+  const escapeRegex = (str) => str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+  if (/^[A-Za-z0-9]+$/.test(query)) {
+      return query.split('').map(c => escapeRegex(c)).join('[-\\s\\/]*');
+  } else {
+      const words = query.split(/\s+/);
+      return words.map(word => escapeRegex(word)).join('[-\\s\\/]*');
+  }
+}
+
 // Ruta para buscar cómics
 router.get('/buscar', async (req, res) => {
-    try {
-        const query = req.query.q; // Obtener el término de búsqueda
-        const comics = await Comic.find({
-            $or: [
-                { title: { $regex: query, $options: 'i' } }, // Buscar por título
-                { volume: { $regex: query, $options: 'i' } } // Buscar por volumen
-            ]
-        });
+  try {
+      const query = req.query.q;
+      if (!query) {
+          return res.render('index', {
+              isHome: false,
+              category: 'No se ha ingresado ningún término de búsqueda',
+              comics: []
+          });
+      }
 
-        res.render('index', {
-            isHome: false,
-            category: `Resultados de búsqueda: "${query}"`,
-            comics
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error al realizar la búsqueda');
-    }
+      const pattern = buildFlexibleRegex(query);
+
+      const comics = await Comic.find({
+          $or: [
+              { title: { $regex: pattern, $options: 'i' } },
+              { volume: { $regex: pattern, $options: 'i' } }
+          ]
+      });
+
+      res.render('index', {
+          isHome: false,
+          category: `Resultados de búsqueda: "${query}"`,
+          comics
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Error al realizar la búsqueda');
+  }
 });
 
 // Función para obtener cómics aleatorios
 const getRandomComics = async (query, limit) => {
     const comics = await Comic.aggregate([
-        { $match: query }, // Filtra por la consulta (editorial o destacados)
-        { $sample: { size: limit } } // Selecciona aleatoriamente
+        { $match: query },
+        { $sample: { size: limit } }
     ]);
     return comics;
 };
@@ -186,7 +207,7 @@ router.get('/indie', async (req, res) => {
 // Ruta para Novedades
 router.get('/novedades', async (req, res) => {
     try {
-      const comics = await Comic.find().sort({ _id: -1 }).limit(20);
+      const comics = await Comic.find().sort({ _id: -1 }).limit(50);
       res.render('index', { 
         isHome: false,
         category: 'Novedades', 
