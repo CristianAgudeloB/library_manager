@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Comic = require('../models/comic');
 const Series = require('../models/series');
+const path = require('path');
 
 function buildFlexibleRegex(query) {
   const escapeRegex = (str) => str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -300,6 +301,11 @@ router.get('/comic/:id/read', async (req, res) => {
         console.error(err);
         res.status(500).send('Error al cargar el cómic');
     }
+});
+
+// Ruta para servir ads.txt
+router.get('/ads.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'ads.txt'));
 });
 
 module.exports = router;
