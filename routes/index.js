@@ -64,13 +64,15 @@ router.get('/', async (req, res) => {
         const marvel = await getRandomComics({ editorial: 'Marvel' }, 8);
         const dc = await getRandomComics({ editorial: 'DC' }, 8);
         const indie = await getRandomComics({ editorial: 'Indie' }, 8);
+        const manga = await getRandomComics({ editorial: 'Manga' }, 8);
 
         res.render('index', {
             isHome: true,
             destacados,
             marvel,
             dc,
-            indie
+            indie,
+            manga
         });
     } catch (err) {
         console.error(err);
@@ -202,6 +204,48 @@ router.get('/indie', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send('Error al cargar los cómics independientes');
+  }
+});
+
+// Ruta para Manga mostrando solo #01 por serie
+router.get('/manga', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 20;
+    const skip = (page - 1) * limit;
+
+    const volumes = await Comic.distinct('volume', { 
+      editorial: 'Manga',
+      title: { $regex: /#01/, $options: 'i' } 
+    });
+    const total = volumes.length;
+    const totalPages = Math.ceil(total / limit);
+
+    const comics = await Comic.aggregate([
+      { 
+        $match: { 
+          editorial: 'Manga',
+          title: { $regex: /#01/, $options: 'i' } 
+        } 
+      },
+      { $sort: { volume: 1, createdAt: 1 } },
+      { $group: { _id: "$volume", comic: { $first: "$$ROOT" } } },
+      { $replaceRoot: { newRoot: "$comic" } },
+      { $sort: { volume: 1 } },
+      { $skip: skip },
+      { $limit: limit }
+    ]);
+
+    res.render('editoriales', { 
+      isHome: false,
+      editorial: 'Manga',
+      comics,
+      currentPage: page,
+      totalPages
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al cargar los mangas');
   }
 });
 
