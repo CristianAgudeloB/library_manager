@@ -52,7 +52,7 @@
           %>
           <div class="comic-card">
             <a href="/series/<%= comic.volume %>">
-              <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+              <img src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp" alt="<%= comic.title %>" />
               <h3><%= comic.volume %></h3>
             </a>
           </div>
