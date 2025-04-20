@@ -94,7 +94,7 @@
           <div class="comic-slide">
             <div class="comic-card">
               <a href="/comic/<%= comic._id %>">
-                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                <img src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp" alt="<%= comic.title %>">
                 <h3><%= comic.title %></h3>
               </a>
             </div>

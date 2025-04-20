@@ -49,7 +49,7 @@
                     <% series.comics.forEach(comic => { %>
                         <div class="comic-card">
                             <a href="/comic/<%= comic._id %>">
-                                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>">
+                                <img src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp" alt="<%= comic.title %>">
                                 <p><%= comic.title %></p>
                             </a>
                         </div>

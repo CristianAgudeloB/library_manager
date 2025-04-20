@@ -16,8 +16,11 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
     />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2746195589471117"
-     crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2746195589471117"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -67,7 +70,11 @@
           <div class="comic-slide">
             <div class="comic-card">
               <a href="/comic/<%= comic._id %>">
-                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+                <img
+                  src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp"
+                  alt="<%= comic.title %>"
+                />
+
                 <h3><%= comic.title %></h3>
                 <p>
                   <a href="/series/<%= comic.volume %>" class="series-link"
@@ -91,7 +98,11 @@
           <div class="comic-slide">
             <div class="comic-card">
               <a href="/comic/<%= comic._id %>">
-                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+                <img
+                  src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp"
+                  alt="<%= comic.title %>"
+                />
+
                 <h3><%= comic.title %></h3>
                 <p>
                   <a href="/series/<%= comic.volume %>" class="series-link"
@@ -114,7 +125,11 @@
           <div class="comic-slide">
             <div class="comic-card">
               <a href="/comic/<%= comic._id %>">
-                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+                <img
+                  src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp"
+                  alt="<%= comic.title %>"
+                />
+
                 <h3><%= comic.title %></h3>
                 <p>
                   <a href="/series/<%= comic.volume %>" class="series-link"
@@ -138,7 +153,11 @@
           <div class="comic-slide">
             <div class="comic-card">
               <a href="/comic/<%= comic._id %>">
-                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+                <img
+                  src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp"
+                  alt="<%= comic.title %>"
+                />
+
                 <h3><%= comic.title %></h3>
                 <p>
                   <a href="/series/<%= comic.volume %>" class="series-link"
@@ -157,11 +176,16 @@
       <section>
         <h2>Manga</h2>
         <div class="comics-slider">
-          <% if (manga.length > 0) { %> <% manga.slice(0, 12).forEach(comic => { %>
+          <% if (manga.length > 0) { %> <% manga.slice(0, 12).forEach(comic => {
+          %>
           <div class="comic-slide">
             <div class="comic-card">
               <a href="/comic/<%= comic._id %>">
-                <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+                <img
+                  src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp"
+                  alt="<%= comic.title %>"
+                />
+
                 <h3><%= comic.title %></h3>
                 <p>
                   <a href="/series/<%= comic.volume %>" class="series-link"
@@ -183,7 +207,11 @@
           <% if (comics.length > 0) { %> <% comics.forEach(comic => { %>
           <div class="comic-card">
             <a href="/comic/<%= comic._id %>">
-              <img src="<%= comic.coverUrl %>" alt="<%= comic.title %>" />
+              <img
+                src="/img?url=<%= encodeURIComponent(comic.coverUrl) %>&w=220&q=60&f=webp"
+                alt="<%= comic.title %>"
+              />
+
               <h3><%= comic.title %></h3>
               <p>
                 <a href="/series/<%= comic.volume %>" class="series-link"
@@ -200,11 +228,18 @@
       <% } %>
 
       <div class="comic-report-container">
-        <button class="comic-report-btn" onclick="toggleReportDialog()"></button>
+        <button
+          class="comic-report-btn"
+          onclick="toggleReportDialog()"
+        ></button>
         <div class="comic-dialog" id="reportDialog">
           <div class="comic-speech-bubble">
             <p>¡Informa un problema!</p>
-            <a href="https://forms.gle/MsJ14tptWhStRCNp8" target="_blank" class="comic-report-button">
+            <a
+              href="https://forms.gle/MsJ14tptWhStRCNp8"
+              target="_blank"
+              class="comic-report-button"
+            >
               Informar
             </a>
           </div>
@@ -214,8 +249,8 @@
 
     <footer>
       <p>
-        Infinity Comics 2025 - Sin ánimo de lucro. Todos los derechos
-        reservados a sus respectivos creadores y propietarios.
+        Infinity Comics 2025 - Sin ánimo de lucro. Todos los derechos reservados
+        a sus respectivos creadores y propietarios.
       </p>
       <p>Web desarrollada por Absolute</p>
     </footer>
@@ -238,6 +273,7 @@
           infinite: true,
           slidesToShow: 5,
           slidesToScroll: 1,
+          lazyLoad: "ondemand",
           arrows: true,
           dots: false,
           prevArrow: '<button type="button" class="slick-prev">←</button>',
@@ -305,25 +341,26 @@
     </script>
     <script>
       function toggleReportDialog() {
-        const dialog = document.getElementById('reportDialog');
-        dialog.style.display = dialog.style.display === 'block' ? 'none' : 'block';
-  
-        if (dialog.style.display === 'block') {
+        const dialog = document.getElementById("reportDialog");
+        dialog.style.display =
+          dialog.style.display === "block" ? "none" : "block";
+
+        if (dialog.style.display === "block") {
           setTimeout(() => {
-            document.addEventListener('click', closeDialogOnClickOutside);
+            document.addEventListener("click", closeDialogOnClickOutside);
           }, 10);
         } else {
-          document.removeEventListener('click', closeDialogOnClickOutside);
+          document.removeEventListener("click", closeDialogOnClickOutside);
         }
       }
-    
+
       function closeDialogOnClickOutside(event) {
-        const dialog = document.getElementById('reportDialog');
-        const btn = document.querySelector('.comic-report-btn');
-        
+        const dialog = document.getElementById("reportDialog");
+        const btn = document.querySelector(".comic-report-btn");
+
         if (!dialog.contains(event.target) && !btn.contains(event.target)) {
-          dialog.style.display = 'none';
-          document.removeEventListener('click', closeDialogOnClickOutside);
+          dialog.style.display = "none";
+          document.removeEventListener("click", closeDialogOnClickOutside);
         }
       }
     </script>
