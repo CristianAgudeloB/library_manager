@@ -5,7 +5,6 @@ const comicSchema = new mongoose.Schema({
     coverUrl: String,
     volume: String,
     downloadUrls: [String],
-    editorial: String,
     descripcion: String,
     traductor: String,
     maqueta: String,
