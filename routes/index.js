@@ -112,17 +112,23 @@ async function handleEditorial(req, res, editorial) {
     const limit = 20;
     const skip  = (page - 1) * limit;
 
-    const allSeries = await Series.find({ editorial })
+    // 1) Traer series por editorial ordenadas alfabéticamente por name
+    const allSeries = await Series.find({ editorial }).sort({ name: 1 })
       .populate({
         path: 'comics',
         match: { title: { $regex: /#01/, $options: 'i' } },
         options: { sort: { volume: 1, createdAt: 1 } }
       });
 
-    const comics01 = allSeries
+    // 2) Obtener del primer tomo de cada serie
+    let comics01 = allSeries
       .map(s => s.comics[0])
       .filter(c => c);
 
+    // 3) Orden alfabético por volume (o título si prefieres):
+    comics01 = comics01.sort((a, b) => a.volume.localeCompare(b.volume));
+
+    // 4) Paginación
     const total      = comics01.length;
     const totalPages = Math.ceil(total / limit);
     const pageComics = comics01.slice(skip, skip + limit);
@@ -247,7 +253,7 @@ router.get('/comic/:id/read', async (req, res) => {
 
 // Ads.txt
 router.get('/ads.txt', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'ads.txt')); 
+  res.sendFile(path.join(__dirname, '..', 'ads.txt'));
 });
 
 module.exports = router;
