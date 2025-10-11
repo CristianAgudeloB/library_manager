@@ -253,9 +253,53 @@
       margin: 0 auto 20px;
       display: block !important;
     }
+    
+    /* Estilos para contenedores de anuncios */
+    .ad-container {
+      width: 100%;
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px 0;
+      background-color: rgba(30, 30, 30, 0.5);
+      border-radius: 4px;
+    }
+    
+    .ad-top {
+      position: sticky;
+      top: 70px;
+      z-index: 5;
+      max-width: 728px;
+      height: 90px;
+      margin: 0 auto 20px;
+    }
+    
+    .ad-bottom {
+      max-width: 728px;
+      height: 90px;
+      margin: 20px auto;
+    }
+    
+    .ad-middle {
+      max-width: 300px;
+      height: 250px;
+      margin: 20px auto;
+    }
+    
+    @media (max-width: 768px) {
+      .ad-top {
+        top: 60px;
+        height: 90px;
+      }
+      
+      .ad-middle {
+        height: 250px;
+      }
+    }
   </style>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2746195589471117"
       crossorigin="anonymous"></script>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2746195589471117"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -287,6 +331,11 @@
     </div>
   </header>
 
+  <!-- Anuncio superior sticky -->
+  <div class="ad-container ad-top">
+    <!-- Google Ads automático -->
+  </div>
+
   <div id="page-index" class="page-index">
     <span id="current-page-index">1</span>/<span id="total-pages"><%= comic.pages.length %></span>
   </div>
@@ -296,6 +345,11 @@
     <img id="current-page" src="<%= comic.pages[0] %>" alt="Página del cómic" class="current-page" />
     <button class="nav-button next" onclick="nextPage()">&#10095;</button>
   </main>
+  
+  <!-- Anuncio inferior -->
+  <div class="ad-container ad-bottom">
+    <!-- Google Ads automático -->
+  </div>
 
   <script>
     const pages = <%- JSON.stringify(comic.pages).replace(/</g, '\\u003c') %>;
@@ -318,9 +372,16 @@
         toggleIcon.classList.remove('fa-arrows-alt-v');
         toggleIcon.classList.add('fa-arrows-alt-h');
         const reader = document.querySelector('.comic-reader');
-        reader.innerHTML = pages.map(page => `
-          <img src="${page}" class="current-page cascade-page" />
-        `).join('');
+        // Generar las páginas en cascada con anuncios cada 5 páginas
+        let htmlContent = '';
+        pages.forEach((page, index) => {
+          htmlContent += `<img src="${page}" class="current-page cascade-page" />`;
+          // Cada 5 páginas, insertar un contenedor de anuncio
+          if ((index + 1) % 5 === 0 && index < pages.length - 1) {
+            htmlContent += `<div class="ad-container ad-middle"></div>`;
+          }
+        });
+        reader.innerHTML = htmlContent;
       } else {
         body.classList.remove('cascade-mode');
         toggleIcon.classList.remove('fa-arrows-alt-h');
